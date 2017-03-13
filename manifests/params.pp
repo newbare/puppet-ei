@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------
-#  Copyright (c) 2016 WSO2, Inc. http://www.wso2.org
+#  Copyright (c) 2017 WSO2, Inc. http://www.wso2.org
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -86,7 +86,7 @@ class wso2ei::params {
       },
       https=>{
         bind_address=> "ei.dev.wso2.org",
-        prefix      => "https: //ei.dev.wso2.org:9443"
+        prefix      => "https: //ei.dev.wso2.org:8243"
       }
     }
 

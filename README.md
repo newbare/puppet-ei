@@ -1,11 +1,11 @@
-# WSO2 Enterprise Service Bus Puppet Module
+# WSO2 Enterprise Integrator Puppet Module
 
-This repository contains the Puppet Module for installing and configuring WSO2 Enterprise Service Bus on various environments. It supports multiple versions of WSO2 Enterprise Service Bus. Configuration data is managed using [Hiera](http://docs.puppetlabs.com/hiera/1/). Hiera provides a mechanism for separating configuration data from Puppet scripts and managing them in a separate set of YAML files in a hierarchical manner.
+This repository contains the Puppet Module for installing and configuring WSO2 Enterprise Integrator on various environments. Configuration data is managed using [Hiera](http://docs.puppetlabs.com/hiera/1/). Hiera provides a mechanism for separating configuration data from Puppet scripts and managing them in a separate set of YAML files in a hierarchical manner.
 
 ## Supported Operating Systems
 
-- Debian 6 or higher
-- Ubuntu 12.04 or higher
+- Debian 6 or h
+- Ubuntu 14.04 or higher
 
 ## Supported Puppet Versions
 
@@ -27,18 +27,17 @@ git submodule update
 
 Copy the following files to their corresponding locations.
 
-1. WSO2 Enterprise Service Bus distribution (4.9.0) to `<PUPPET_HOME>/modules/wso2esb/files`
+1. WSO2 Enterprise Integrator (6.0.0) to `<PUPPET_HOME>/modules/wso2ei/files`
 2. JDK 1.7_80 distribution to `<PUPPET_HOME>/modules/wso2base/files`
 
-## Running WSO2 Enterprise Service Bus in the `default` profile
+## Running WSO2 Enterprise Integrator in the `default` profile
 No changes to Hiera data are required to run the `default` profile.  Copy the above mentioned files to their corresponding locations and apply the Puppet Modules.
 
-## Running WSO2 Enterprise Service Bus with clustering in specific profiles
-Hiera data sets matching the distributed profiles of WSO2 Enterprise Service Bus (`worker`, `manager`) are shipped with clustering related configuration already enabled. Therefore, only a few changes are needed to setup a distributed deployment. For more details refer the [WSO2 ESB clustering guide](https://docs.wso2.com/display/CLUSTER44x/Clustering+ESB+4.9.0).
+## Running WSO2 Enterprise Integrator with clustering in specific profiles
+Hiera data sets matching the distributed profiles of WSO2 Enterprise Integrator (`worker`, `manager`) are shipped with clustering related configuration already enabled. Therefore, only a few changes are needed to setup a distributed deployment. 
 
 1. If the Clustering Membership Scheme is `WKA`, add the Well Known Address list.
-
-   Ex:
+     Ex:
     ```yaml
     wso2::clustering:
         enabled: true
@@ -78,7 +77,6 @@ Hiera data sets matching the distributed profiles of WSO2 Enterprise Service Bus
         validation_interval: "%{hiera('wso2::datasources::common::validation_interval')}"
 
     ```
-
 3. Configure registry mounting
 
    Ex:
@@ -89,7 +87,7 @@ Hiera data sets matching the distributed profiles of WSO2 Enterprise Service Bus
       read_only: false
       registry_root: /
       enable_cache: true
-      
+
     wso2_gov_db:
       path: /_system/governance
       target_path: /_system/governance
@@ -114,7 +112,7 @@ Hiera data sets matching the distributed profiles of WSO2 Enterprise Service Bus
            append_tenant_id: true
     ```
 
-## Running WSO2 Enterprise Service Bus with Secure Vault
+## Running WSO2 Enterprise Integrator with Secure Vault
 WSO2 Carbon products may contain sensitive information such as passwords in configuration files. [WSO2 Secure Vault](https://docs.wso2.com/display/Carbon444/Securing+Passwords+in+Configuration+Files) provides a solution for securing such information.
 
 Uncomment and modify the below changes in Hiera file to apply Secure Vault.
@@ -143,7 +141,6 @@ Uncomment and modify the below changes in Hiera file to apply Secure Vault.
         secret_alias_value: repository/conf/carbon.xml//Server/Security/KeyStore/Password,false
         password: wso2carbon
     ```
-
 3. Add Cipher Tool configuration file templates to `template_list`
 
     ```yaml
@@ -156,5 +153,5 @@ Uncomment and modify the below changes in Hiera file to apply Secure Vault.
     Please add the `password-tmp` template also to `template_list` if the `vm_type` is not `docker` when you are running the server in `default` platform.
 
 
-## Running WSO2 Enterprise Service Bus on Kubernetes
-WSO2 ESB Puppet module ships Hiera data required to deploy WSO2 Enterprise Service Bus on Kubernetes. For more information refer to the documentation on [deploying WSO2 products on Kubernetes using WSO2 Puppet Modules](https://docs.wso2.com/display/PM210/Deploying+WSO2+Products+on+Kubernetes+Using+WSO2+Puppet+Modules).
+## Running WSO2 Enterprise Integrator on Kubernetes
+WSO2 ESB Puppet module ships Hiera data required to deploy WSO2 Enterprise Integrator on Kubernetes. For more information refer to the documentation on [deploying WSO2 products on Kubernetes using WSO2 Puppet Modules](https://docs.wso2.com/display/PM210/Deploying+WSO2+Products+on+Kubernetes+Using+WSO2+Puppet+Modules).
