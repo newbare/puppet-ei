@@ -15,7 +15,6 @@ This repository contains the Puppet Module for installing and configuring WSO2 E
 Follow the steps mentioned in the [wiki](https://github.com/wso2/puppet-base/wiki) to setup a development environment and update/create new puppet modules.
 
 ## Add WSO2 Base Puppet Module
-
 Run the following commands to get wso2base submodule.
 
 ````
@@ -28,10 +27,26 @@ git submodule update
 Copy the following files to their corresponding locations.
 
 1. WSO2 Enterprise Integrator (6.0.0) to `<PUPPET_HOME>/modules/wso2ei/files`
-2. JDK 1.7_80 distribution to `<PUPPET_HOME>/modules/wso2base/files`
+2. JDK 1.8 distribution to `<PUPPET_HOME>/modules/wso2base/files`
 
 ## Running WSO2 Enterprise Integrator in the `default` profile
-No changes to Hiera data are required to run the `default` profile.  Copy the above mentioned files to their corresponding locations and apply the Puppet Modules.
+No changes to Hiera data are required to run the `default` profile.  Copy the above mentioned files to their corresponding locations and apply the Puppet Modules by following the https://github.com/wso2/puppet-base/wiki/Use-WSO2-Puppet-Modules-in-puppet-master-agent-Environment.
+
+## Enterprise Integrator specific configs for puppet modules.
+Change following line in the /etc/puppet/environments/production/modules/wso2base/templates/wso2service.erb
+``CMD="${CARBON_HOME}/bin/wso2server.sh"``to ``CMD="${CARBON_HOME}/bin/integrator.sh"``
+
+Remove the "repository" part of the config file locations. Those files are in <EI_HOME>/conf folder now. Now the config under ``wso2::template_list:`` should be as following,
+```
+  - conf/carbon.xml
+  - conf/user-mgt.xml
+  - conf/registry.xml
+  - conf/datasources/master-datasources.xml
+  - conf/tomcat/catalina-server.xml
+  - conf/axis2/axis2.xml
+  - conf/security/authenticators.xml
+  - bin/integrator.sh
+```
 
 ## Running WSO2 Enterprise Integrator with clustering in specific profiles
 Hiera data sets matching the distributed profiles of WSO2 Enterprise Integrator (`worker`, `manager`) are shipped with clustering related configuration already enabled. Therefore, only a few changes are needed to setup a distributed deployment. 
