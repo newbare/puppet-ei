@@ -4,8 +4,8 @@ This repository contains the Puppet Module for installing and configuring WSO2 E
 
 ## Supported Operating Systems
 
-- Debian 6 or h
 - Ubuntu 14.04 or higher
+- RedHat Enterprise Linux 6.7
 
 ## Supported Puppet Versions
 
