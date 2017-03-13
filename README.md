@@ -36,8 +36,9 @@ No changes to Hiera data are required to run the `default` profile.  Copy the ab
 Change following line in the /etc/puppet/environments/production/modules/wso2base/templates/wso2service.erb
 ``CMD="${CARBON_HOME}/bin/wso2server.sh"``to ``CMD="${CARBON_HOME}/bin/integrator.sh"``
 
-Remove the "repository" part of the config file locations. Those files are in <EI_HOME>/conf folder now. Now the config under ``wso2::template_list:`` should be as following,
+Remove the "repository" part of the config file locations in the ``/etc/puppet/hieradata/production/wso2/common.yaml``. Those files are in <EI_HOME>/conf folder now. Now the config under ``wso2::template_list:`` section should be as following,
 ```
+wso2::template_list:
   - conf/carbon.xml
   - conf/user-mgt.xml
   - conf/registry.xml
